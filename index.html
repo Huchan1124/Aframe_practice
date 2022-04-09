@@ -23,10 +23,10 @@
 
 
         <template v-if="true">
-            <a-scene  cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
+            <a-scene environment cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
                 <a-assets>
-                    <img id="love-trial-cover" src="./cover.png" alt="video-cover">
-                    <video id="love-trial" loop="true" src="./video.mp4" webkit-playsinline playsinline></video>
+                    <img id="love-trial-cover" :src="`./${cover}`" alt="video-cover">
+                    <video id="love-trial" loop="true" :src="`./${videoSrc}`" webkit-playsinline playsinline></video>
                     <a-mixin id="screen-frame" geometry="primitive: plane; width: 2; height: 1"
                         material="color: pink; shader: flat"></a-mixin>
                 </a-assets>
@@ -53,7 +53,9 @@
         Vue.createApp({
             data() {
                 return {
-                    message: 'Hello Vue!'
+                    message: 'Hello Vue!',
+                    cover: 'cover.png',
+                    videoSrc: 'video.mp4'
                 }
             }
         }).mount('#app')
