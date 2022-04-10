@@ -41,9 +41,9 @@
 
                 <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="0 2 -1.5"
                     mixin="screen-frame">
-                    <a-image id="video-cover" src="#www-cover" width="1.6" height="0.8" position="0 0 0.010">
+                    <a-image id="video-cover" src="#www-cover" width="1.6" height="0.8" position="0 0 0.011">
                     </a-image>
-                    <a-video id="video" src="#www" width="1.6" height="0.8" position="0 0 0"></a-video>
+                    <a-video id="video" src="#www" width="1.6" height="0.8" position="0 0 0.010"></a-video>
                 </a-entity>
 
 
@@ -56,9 +56,9 @@
 
                 <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="-4 2 0.8"
                     rotation="0 90 0" mixin="screen-frame">
-                    <!-- <a-image id="video-cover" src="#love-trial-cover" width="1.6" height="0.8" position="0 0 0.010">
-                    </a-image> -->
-                    <a-video id="video" autoplay muted src="#love-trial" width="1.6" height="0.8" position="0 0 0"></a-video>
+                    <a-image id="video-cover2" src="#love-trial-cover" width="1.6" height="0.8" position="0 0 0.011">
+                    </a-image>
+                    <a-video id="video" autoplay muted src="#love-trial" width="1.6" height="0.8" position="0 0 0.010"></a-video>
                 </a-entity>
 
 
@@ -92,7 +92,9 @@
             const www = document.querySelector('#www');
             const loveTrial = document.querySelector('#love-trial');
             const cover = document.querySelector('#video-cover')
+            const cover2 = document.querySelector('#video-cover2')
             cover.setAttribute("visible", false);
+            cover2.setAttribute("visible", false);
             loveTrial.play();
             www.play();
             // if (www.paused == true) {
