@@ -20,7 +20,7 @@
             Change to Jungle (takes some time to load)</button> -->
 
         <template v-if="true">
-            <a-scene   cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
+            <a-scene  environment="preset: checkerboard;groundColor:#ECE9E5;groundColor2:#44434C;dressing:none;skyColor:white;horizonColor:white" cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
                 <a-assets>
                     <img id="love-trial-cover" :src="`./assets/cover/${cover[0]}`" alt="video-cover">
                     <img id="www-cover" :src="`./assets/cover/${cover[1]}`" alt="video-cover">
