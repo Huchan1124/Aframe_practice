@@ -14,36 +14,52 @@
 
 <body>
     <div id="app">
-        <button style="position: absolute;z-index: 11111;">
+        <!-- <button style="position: absolute;z-index: 11111;">
             {{ message }}</button>
         <button @click="currentSrc = srcJungle">
-            Change to Jungle (takes some time to load)</button>
-
-
-
+            Change to Jungle (takes some time to load)</button> -->
 
         <template v-if="true">
-            <a-scene environment cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
+            <a-scene   cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
                 <a-assets>
-                    <img id="love-trial-cover" :src="`./${cover}`" alt="video-cover">
-                    <video id="love-trial" loop="true" :src="`./${videoSrc}`" webkit-playsinline playsinline></video>
+                    <img id="love-trial-cover" :src="`./assets/cover/${cover[0]}`" alt="video-cover">
+                    <img id="www-cover" :src="`./assets/cover/${cover[1]}`" alt="video-cover">
+                    <img id="mnr01" :src="`./assets/poster/${mnrPic[0]}`" alt="video-cover">
+                    <img id="mnr02" :src="`./assets/poster/${mnrPic[1]}`" alt="video-cover">
+                    <video autoplay muted   id="love-trial" loop="true" :src="`./assets/video/${videoSrc[0]}`" webkit-playsinline playsinline></video>
+                    <video id="www" loop="true" :src="`./assets/video/${videoSrc[1]}`" webkit-playsinline playsinline></video>
+                    
                     <a-mixin id="screen-frame" geometry="primitive: plane; width: 2; height: 1"
                         material="color: pink; shader: flat"></a-mixin>
                 </a-assets>
-
-                <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-                <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-                <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-                <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+                <!-- <a-triangle  rotation="0 0 0" animation="property: rotation; to: 0 0 360 ; loop: true; dur: 10000" color="#36EFB2" position="0 1.5 -1" ></a-triangle> -->
+                <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box> -->
+                <!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere> -->
+                <!-- <a-cylinder position="0 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder> -->
+                <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
                 <a-sky color="#ECECEC"></a-sky>
 
                 <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="0 2 -1.5"
                     mixin="screen-frame">
-                    <a-image id="video-cover" src="#love-trial-cover" width="1.6" height="0.8" position="0 0 0.010">
+                    <a-image id="video-cover" src="#www-cover" width="1.6" height="0.8" position="0 0 0.010">
                     </a-image>
-                    <a-video id="video" src="#love-trial" width="1.6" height="0.8" position="0 0 0"></a-video>
+                    <a-video id="video" src="#www" width="1.6" height="0.8" position="0 0 0"></a-video>
                 </a-entity>
 
+
+                <a-image id="mnr01"
+                    animation="property: position; from:-2 2 -1.5; to: -2 2.2 -1.5 ;dur: 6000; dir:alternate;loop:true;easing:linear"
+                    src="#mnr01" width="1.6" height="0.8"></a-image>
+                <a-image id="mnr02"
+                    animation="property: position; from:2 2.5 -1.5; to: 2 2.3 -1.5 ;dur: 7000; dir:alternate;loop:true;easing:linear"
+                    src="#mnr02" width="1.6" height="0.8"></a-image>
+
+                <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="-4 2 0.8"
+                    rotation="0 90 0" mixin="screen-frame">
+                    <!-- <a-image id="video-cover" src="#love-trial-cover" width="1.6" height="0.8" position="0 0 0.010">
+                    </a-image> -->
+                    <a-video id="video" autoplay muted src="#love-trial" width="1.6" height="0.8" position="0 0 0"></a-video>
+                </a-entity>
 
 
             </a-scene>
@@ -54,30 +70,42 @@
             data() {
                 return {
                     message: 'Hello Vue!',
-                    cover: 'cover.png',
-                    videoSrc: 'video.mp4'
+                    cover: {
+                        0: 'love-trialCover.png',
+                        1: 'wwwCover.png',
+                    },
+                    mnrPic: {
+                        0: 'mnr01.png',
+                        1: 'mnr02.png',
+                    },
+                    videoSrc: {
+                        0: 'video.mp4',
+                        1: 'video2.mp4',
+                    },
+
                 }
             }
         }).mount('#app')
     </script>
     <script>
         window.addEventListener('click', function() {
-            const video = document.querySelector('#love-trial');
+            const www = document.querySelector('#www');
+            const loveTrial = document.querySelector('#love-trial');
             const cover = document.querySelector('#video-cover')
             cover.setAttribute("visible", false);
-            if (video.paused == true) {
-                video.play();
-            } else {
-                video.pause();
-            }
+            loveTrial.play();
+            www.play();
+            // if (www.paused == true) {
+            //     www.play();
+            // } else {
+            //     www.pause();
+            // }
         }, false);
 
 
-        console.log(document.querySelector('button'))
-
-        document.querySelector('button').addEventListener('click', () => {
-            alert("點到")
-        })
+        // document.querySelector('button').addEventListener('click', () => {
+        //     alert("點到")
+        // })
     </script>
 
 </body>
