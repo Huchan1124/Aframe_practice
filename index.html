@@ -26,6 +26,7 @@
                 <a-assets>
                     <a-asset-item id="cake" src="./assets/model/cake/scene.gltf"></a-asset-item>
                     <a-asset-item id="teddy-bears" src="./assets/model/teddy_bears/scene.gltf"></a-asset-item>
+                    <a-asset-item id="hbd" src="./assets/model/happy_birthday_sign/scene.gltf"></a-asset-item>
                     <img id="love-trial-cover" :src="`./assets/cover/${cover[0]}`" alt="video-cover">
                     <img id="www-cover" :src="`./assets/cover/${cover[1]}`" alt="video-cover">
                     <img id="mnr01" :src="`./assets/poster/${mnrPic[0]}`" alt="image">
@@ -48,7 +49,7 @@
                     <a-video id="video" src="#www" width="1.6" height="0.8" position="0 0 0.010"></a-video>
                 </a-entity>
                 <a-light type="directional" color="#6e7fc4" position="-0.902 5.519 2" intensity="1" scale="5 5 5"></a-light>
-                <!-- <a-text width="10" color="#FFCCAA" value="HANASATO MINORI" position="-3 3.2 -1.8"></a-text> -->
+                <a-text width="10" color="#FFCCAA" value="HANASATO MINORI" position="-3 3.2 -1.8"></a-text>
                 <a-text ref="textDOM" color="#33C3F0" value="我是一隻熊熊!!" visible="false" @click="showText"
                     class="raycastable text" negate="false" font="./assets/font/custom-msdf.json"
                     position="-0.318 1.27 -1.8"></a-text>
@@ -56,6 +57,7 @@
                 <a-gltf-model src="#cake" rotation="0 0 0" position="-6 0 -2.996" scale="0.15 0.15 0.15"></a-gltf-model>
                 <a-gltf-model id="teddy" src="#teddy-bears" @click="showText" class="raycastable" rotation="0 -15 0"
                     position="-1 0.1 0" scale="0.2 0.2 0.2"></a-gltf-model>
+                <a-gltf-model  src="#hbd"  position="-3.387 3.14 1.5" scale="1 1 1"></a-gltf-model>
 
 
                 <a-image id="mnr01"
