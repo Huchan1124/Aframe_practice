@@ -9,7 +9,8 @@
     <title>Document</title>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
 </head>
 
 <body>
@@ -20,46 +21,58 @@
             Change to Jungle (takes some time to load)</button> -->
 
         <template v-if="true">
-            <a-scene  environment="preset: checkerboard;groundColor:#ECE9E5;groundColor2:#44434C;dressing:none;skyColor:white;horizonColor:white" cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
+            <a-scene
+                environment="preset: checkerboard;groundColor:#ECE9E5;groundColor2:#44434C;dressing:none;skyColor:white;horizonColor:white"
+                cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
                 <a-assets>
+                    <a-asset-item id="teddy-bears" src="./assets/model/teddy_bears/scene.gltf"></a-asset-item>
                     <img id="love-trial-cover" :src="`./assets/cover/${cover[0]}`" alt="video-cover">
                     <img id="www-cover" :src="`./assets/cover/${cover[1]}`" alt="video-cover">
                     <img id="mnr01" :src="`./assets/poster/${mnrPic[0]}`" alt="video-cover">
                     <img id="mnr02" :src="`./assets/poster/${mnrPic[1]}`" alt="video-cover">
-                    <video autoplay muted   id="love-trial" loop="true" :src="`./assets/video/${videoSrc[0]}`" webkit-playsinline playsinline></video>
-                    <video id="www" loop="true" :src="`./assets/video/${videoSrc[1]}`" webkit-playsinline playsinline></video>
-                    
+                    <video autoplay muted id="love-trial" loop="true" :src="`./assets/video/${videoSrc[0]}`"
+                        webkit-playsinline playsinline></video>
+                    <video id="www" loop="true" :src="`./assets/video/${videoSrc[1]}`" webkit-playsinline
+                        playsinline></video>
+
                     <a-mixin id="screen-frame" geometry="primitive: plane; width: 2; height: 1"
                         material="color: pink; shader: flat"></a-mixin>
                 </a-assets>
                 <!-- <a-triangle  rotation="0 0 0" animation="property: rotation; to: 0 0 360 ; loop: true; dur: 10000" color="#36EFB2" position="0 1.5 -1" ></a-triangle> -->
-                <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box> -->
-                <!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere> -->
-                <!-- <a-cylinder position="0 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder> -->
+                <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+                <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere> -->
+                <!-- <a-cylinder position="0 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" class="raycastable" @click="showText"></a-cylinder> -->
                 <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
-                <a-sky color="#ECECEC"></a-sky>
-
-                <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="0 2 -1.5"
-                    mixin="screen-frame">
-                    <a-image id="video-cover" src="#www-cover" width="1.6" height="0.8" position="0 0 0.011">
+                <!-- <a-sky color="#ECECEC"></a-sky> -->
+                <!-- link="on: click; href: https://www.google.com.tw/?hl=zh_TW" -->
+                <a-entity @click="showText" id="screen" position="0 2 -1.5"
+                    mixin="screen-frame" class="raycastable">
+                    <!-- <a-image id="video-cover" src="#www-cover" width="1.6" height="0.8" position="0 0 0.011">
                     </a-image>
-                    <a-video id="video" src="#www" width="1.6" height="0.8" position="0 0 0.010"></a-video>
+                    <a-video id="video" src="#www" width="1.6" height="0.8" position="0 0 0.010"></a-video> -->
                 </a-entity>
+                <a-light type="point" color="#fff" position="-8 5 0" intensity="2"></a-light>
+
+                <a-text color="#33C3F0" value="我是一隻熊熊!!" visible="false" @click="showText"  class="raycastable text" negate="false" font="./assets/font/custom-msdf.json"
+                    position="-0.318 1.27 -1.8"></a-text>
+         
+              
+                <a-gltf-model id="teddy" src="#teddy-bears"  @click="showText"  class="raycastable"   position="-1 0 -3" scale="0.2 0.2 0.2"></a-gltf-model>
 
 
-                <a-image id="mnr01"
+                <!-- <a-image id="mnr01"
                     animation="property: position; from:-2 2 -1.5; to: -2 2.2 -1.5 ;dur: 6000; dir:alternate;loop:true;easing:linear"
                     src="#mnr01" width="1.6" height="0.8"></a-image>
                 <a-image id="mnr02"
                     animation="property: position; from:2 2.5 -1.5; to: 2 2.3 -1.5 ;dur: 7000; dir:alternate;loop:true;easing:linear"
-                    src="#mnr02" width="1.6" height="0.8"></a-image>
+                    src="#mnr02" width="1.6" height="0.8"></a-image> -->
 
-                <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="-4 2 0.8"
+                <!-- <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="-4 2 0.8"
                     rotation="0 90 0" mixin="screen-frame">
                     <a-image id="video-cover2" src="#love-trial-cover" width="1.6" height="0.8" position="0 0 0.011">
                     </a-image>
                     <a-video id="video" autoplay muted src="#love-trial" width="1.6" height="0.8" position="0 0 0.010"></a-video>
-                </a-entity>
+                </a-entity> -->
 
 
             </a-scene>
@@ -69,7 +82,7 @@
         Vue.createApp({
             data() {
                 return {
-                    message: 'Hello Vue!',
+                    message: '哈囉!',
                     cover: {
                         0: 'love-trialCover.png',
                         1: 'wwwCover.png',
@@ -84,25 +97,37 @@
                     },
 
                 }
-            }
+            },
+            methods:{
+                showText(){
+                    alert('點到熊熊')
+                    document.querySelector('.text').setAttribute("visible", true);
+                }
+
+            },
         }).mount('#app')
     </script>
     <script>
-        window.addEventListener('click', function() {
-            const www = document.querySelector('#www');
-            const loveTrial = document.querySelector('#love-trial');
-            const cover = document.querySelector('#video-cover')
-            const cover2 = document.querySelector('#video-cover2')
-            cover.setAttribute("visible", false);
-            cover2.setAttribute("visible", false);
-            loveTrial.play();
-            www.play();
-            // if (www.paused == true) {
-            //     www.play();
-            // } else {
-            //     www.pause();
-            // }
-        }, false);
+        // console.log(document.querySelector('#screen'))
+        // document.querySelector('#screen').addEventListener('click',()=>{
+        //     console.log('點到')
+        // })
+        
+        // window.addEventListener('click', function() {
+        //     const www = document.querySelector('#www');
+        //     const loveTrial = document.querySelector('#love-trial');
+        //     const cover = document.querySelector('#video-cover')
+        //     const cover2 = document.querySelector('#video-cover2')
+        //     cover.setAttribute("visible", false);
+        //     cover2.setAttribute("visible", false);
+        //     loveTrial.play();
+        //     www.play();
+        // if (www.paused == true) {
+        //     www.play();
+        // } else {
+        //     www.pause();
+        // }
+        // }, false);
 
 
         // document.querySelector('button').addEventListener('click', () => {
