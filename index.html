@@ -50,9 +50,9 @@
                 </a-entity>
                 <a-light type="directional" color="#6e7fc4" position="-0.902 5.519 2" intensity="1" scale="5 5 5"></a-light>
                 <a-text width="10" color="#FFCCAA" value="HANASATO MINORI" position="-3 3.2 -1.8"></a-text>
-                <a-text ref="textDOM" color="#33C3F0" value="我是一隻熊熊!!" visible="false" @click="showText"
+                <!-- <a-text ref="textDOM" color="#33C3F0" value="我是一隻熊熊!!" visible="false" @click="showText"
                     class="raycastable text" negate="false" font="./assets/font/custom-msdf.json"
-                    position="-0.318 1.27 -1.8"></a-text>
+                    position="-0.318 1.27 -1.8"></a-text> -->
 
                 <a-gltf-model src="#cake" rotation="0 0 0" position="-6 0 -2.996" scale="0.15 0.15 0.15"></a-gltf-model>
                 <a-gltf-model id="teddy" src="#teddy-bears" @click="showText" class="raycastable" rotation="0 -15 0"
@@ -106,7 +106,6 @@
             },
             methods: {
                 showText() {
-                    alert('點到熊熊')
                     this.$refs.textDOM.setAttribute("visible", true)
                 },
                 playVideo() {
