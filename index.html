@@ -11,6 +11,7 @@
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
     <script src="./component/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
 </head>
 <style>
 
@@ -18,66 +19,64 @@
 
 <body>
     <div id="app">
-        <!-- <button style="position: absolute;z-index: 11111;">
-            {{ message }}</button>
-        <button @click="currentSrc = srcJungle">
-            Change to Jungle (takes some time to load)</button> -->
-
         <template v-if="true">
             <a-scene
-                environment="preset: checkerboard;groundColor:#ECE9E5;groundColor2:#44434C;dressing:none;skyColor:black;horizonColor:white"
+                environment="preset: checkerboard;groundColor:#ECE9E5;groundColor2:#44434C;dressing:none;skyColor:#1f2233;horizonColor:#6b7193"
                 cursor="rayOrigin: mouse; fuse: false" raycaster="objects: .raycastable">
                 <a-assets>
+                    <a-asset-item id="cake" src="./assets/model/cake/scene.gltf"></a-asset-item>
                     <a-asset-item id="teddy-bears" src="./assets/model/teddy_bears/scene.gltf"></a-asset-item>
                     <img id="love-trial-cover" :src="`./assets/cover/${cover[0]}`" alt="video-cover">
                     <img id="www-cover" :src="`./assets/cover/${cover[1]}`" alt="video-cover">
                     <img id="mnr01" :src="`./assets/poster/${mnrPic[0]}`" alt="image">
                     <img id="mnr02" :src="`./assets/poster/${mnrPic[1]}`" alt="image">
-                    <video ref="lovetrialDOM" autoplay muted id="love-trial" loop="true" :src="`./assets/video/${videoSrc[0]}`"
-                        webkit-playsinline playsinline></video>
+                    <img id="mnr03" :src="`./assets/poster/${mnrPic[2]}`" alt="image">
+                    <video ref="lovetrialDOM" autoplay muted id="love-trial" loop="true"
+                        :src="`./assets/video/${videoSrc[0]}`" webkit-playsinline playsinline></video>
                     <video ref="wwwDOM" id="www" loop="true" :src="`./assets/video/${videoSrc[1]}`" webkit-playsinline
                         playsinline></video>
 
                     <a-mixin id="screen-frame" geometry="primitive: plane; width: 2; height: 1"
                         material="color: pink; shader: flat"></a-mixin>
                 </a-assets>
-                <!-- <a-triangle  rotation="0 0 0" animation="property: rotation; to: 0 0 360 ; loop: true; dur: 10000" color="#36EFB2" position="0 1.5 -1" ></a-triangle> -->
-                <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-                <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere> -->
-                <!-- <a-cylinder position="0 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" class="raycastable" @click="showText"></a-cylinder> -->
-                <!-- <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
-                <!-- <a-sky color="black"></a-sky> -->
+
                 <a-entity position="0 2.25 -15" particle-system="preset:snow"></a-entity>
-                <!-- link="on: click; href: https://www.google.com.tw/?hl=zh_TW" -->
-                <a-entity @click="showText" id="screen" position="0 2 -1.5"
-                    mixin="screen-frame" class="raycastable">
-                    <!-- <a-image  @click="playVideo" class="raycastable" ref="videocoverDOM" id="video-cover" src="#www-cover" width="1.6" height="0.8" position="0 0 0.011">
+                <a-entity @click="showText" id="screen" position="0 2 -1.5" mixin="screen-frame" class="raycastable">
+                    <a-image @click="playVideo" class="raycastable" ref="videocoverDOM" id="video-cover"
+                        src="#www-cover" width="1.6" height="0.8" position="0 0 0.011">
                     </a-image>
-                    <a-video id="video" src="#www" width="1.6" height="0.8" position="0 0 0.010"></a-video> -->
+                    <a-video id="video" src="#www" width="1.6" height="0.8" position="0 0 0.010"></a-video>
                 </a-entity>
-                <a-light type="point" color="#fff" position="0 4 0" intensity="1.5"></a-light>
+                <a-light type="directional" color="#6e7fc4" position="-0.902 5.519 2" intensity="1" scale="5 5 5"></a-light>
+                <!-- <a-text width="10" color="#FFCCAA" value="HANASATO MINORI" position="-3 3.2 -1.8"></a-text> -->
+                <a-text ref="textDOM" color="#33C3F0" value="我是一隻熊熊!!" visible="false" @click="showText"
+                    class="raycastable text" negate="false" font="./assets/font/custom-msdf.json"
+                    position="-0.318 1.27 -1.8"></a-text>
 
-                <a-text ref="textDOM" color="#33C3F0" value="我是一隻熊熊!!" visible="false" @click="showText"  class="raycastable text" negate="false" font="./assets/font/custom-msdf.json"
-                    position="-0.318 1.27 -1.8" ></a-text>
-         
-              
-                <a-gltf-model id="teddy" src="#teddy-bears"  @click="showText"  class="raycastable"   rotation="0 -15 0" position="-1 0 -3" scale="0.2 0.2 0.2"></a-gltf-model>
+                <a-gltf-model src="#cake" rotation="0 0 0" position="-6 0 -2.996" scale="0.15 0.15 0.15"></a-gltf-model>
+                <a-gltf-model id="teddy" src="#teddy-bears" @click="showText" class="raycastable" rotation="0 -15 0"
+                    position="-1 0.1 0" scale="0.2 0.2 0.2"></a-gltf-model>
 
 
-                <!-- <a-image id="mnr01"
+                <a-image id="mnr01"
                     animation="property: position; from:-2 2 -1.5; to: -2 2.2 -1.5 ;dur: 6000; dir:alternate;loop:true;easing:linear"
                     src="#mnr01" width="1.6" height="0.8"></a-image>
                 <a-image id="mnr02"
                     animation="property: position; from:2 2.5 -1.5; to: 2 2.3 -1.5 ;dur: 7000; dir:alternate;loop:true;easing:linear"
-                    src="#mnr02" width="1.6" height="0.8"></a-image> -->
+                    src="#mnr02" width="1.6" height="0.8"></a-image>
+                <a-image id="mnr03"
+                animation="property: position; from:-2.5 2.3 3.3; to: -2.5 1.8 3.3 ;dur: 6000; dir:alternate;loop:true;easing:linear"
+                    src="#mnr03" width="1.6" height="0.8" rotation="0 90 0" position="-2.5 2 3.3"></a-image>
 
-                <!-- <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="-4 2 0.8"
+                <a-entity link="on: click; href: https://www.google.com.tw/?hl=zh_TW" id="screen" position="-3.093 2 0.8"
                     rotation="0 90 0" mixin="screen-frame">
-                    <a-image ref="videocover2DOM" id="video-cover2" src="#love-trial-cover" width="1.6" height="0.8" position="0 0 0.011">
+                    <a-image ref="videocover2DOM" id="video-cover2" src="#love-trial-cover" width="1.6" height="0.8"
+                        position="0 0 0.011">
                     </a-image>
-                    <a-video id="video" autoplay muted src="#love-trial" width="1.6" height="0.8" position="0 0 0.010"></a-video>
-                </a-entity> -->
-                <!-- <a-entity camera look-controls position="0 1 1"></a-entity> -->
+                    <a-video id="video" autoplay muted src="#love-trial" width="1.6" height="0.8" position="0 0 0.010">
+                    </a-video>
+                </a-entity>
+
 
             </a-scene>
         </template>
@@ -94,6 +93,7 @@
                     mnrPic: {
                         0: 'mnr01.png',
                         1: 'mnr02.png',
+                        2: 'mnr03.jpg',
                     },
                     videoSrc: {
                         0: 'video.mp4',
@@ -108,27 +108,13 @@
                     this.$refs.textDOM.setAttribute("visible", true)
                 },
                 playVideo() {
-                    // window.addEventListener('click', function() {
-                    // const www = document.querySelector('#www');
-                    // const loveTrial = document.querySelector('#love-trial');
-                    // const cover = document.querySelector('#video-cover')
-                    // const cover2 = document.querySelector('#video-cover2')
-                    // cover.setAttribute("visible", false);
-                    // cover2.setAttribute("visible", false);
 
                     this.$refs.videocoverDOM.setAttribute("visible", false);
                     this.$refs.videocover2DOM.setAttribute("visible", false);
-                    // loveTrial.play();
-                    // www.play();
+
                     this.$refs.lovetrialDOM.play();
                     this.$refs.wwwDOM.play();
-                    // if (www.paused == true) {
-                    //     www.play();
-                    // } else {
-                    //     www.pause();
-                    // }
-                    // },
-                    // false);
+
                 }
 
             },
@@ -139,33 +125,7 @@
 
         app.mount('#app');
     </script>
-    <script>
-        // console.log(document.querySelector('#screen'))
-        // document.querySelector('#screen').addEventListener('click',()=>{
-        //     console.log('點到')
-        // })
 
-        // window.addEventListener('click', function() {
-        //     const www = document.querySelector('#www');
-        //     const loveTrial = document.querySelector('#love-trial');
-        //     const cover = document.querySelector('#video-cover')
-        //     const cover2 = document.querySelector('#video-cover2')
-        //     cover.setAttribute("visible", false);
-        //     cover2.setAttribute("visible", false);
-        //     loveTrial.play();
-        //     www.play();
-        // if (www.paused == true) {
-        //     www.play();
-        // } else {
-        //     www.pause();
-        // }
-        // }, false);
-
-
-        // document.querySelector('button').addEventListener('click', () => {
-        //     alert("點到")
-        // })
-    </script>
 
 </body>
 
