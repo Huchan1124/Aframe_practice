@@ -83,7 +83,7 @@
         </template>
     </div>
     <script>
-        Vue.createApp({
+        const app = Vue.createApp({
             data() {
                 return {
                     message: '哈囉!',
@@ -135,7 +135,9 @@
             mounted() {
 
             }
-        }).mount('#app')
+        });
+
+        app.mount('#app');
     </script>
     <script>
         // console.log(document.querySelector('#screen'))
